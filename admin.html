@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>TURBO THREADS | Private Admin</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .admin-page{min-height:100vh;padding:120px 24px 60px;max-width:1500px;margin:auto}
+    .admin-login,.admin-panel{max-width:1200px;margin:auto;background:rgba(15,15,17,.94);border:1px solid var(--border-color);border-radius:24px;padding:30px;box-shadow:0 25px 80px rgba(0,0,0,.45)}
+    .admin-login{max-width:480px;margin-top:8vh;text-align:center}.admin-login h1,.admin-panel h1{margin-bottom:8px}.admin-sub{color:var(--text-muted);margin-bottom:24px}
+    .admin-form{display:grid;gap:14px}.admin-form input{width:100%;padding:14px;border-radius:12px;border:1px solid var(--border-color);background:#09090b;color:#fff}
+    .admin-top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:25px}.admin-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .admin-btn{border:1px solid var(--border-color);background:#111113;color:#fff;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:800}.admin-btn.primary{background:var(--red-accent);border-color:var(--red-accent);color:#fff}.admin-btn:hover{filter:brightness(1.12)}
+    .orders-grid{display:grid;gap:15px}.order-card{background:#0b0b0e;border:1px solid #242428;border-radius:18px;padding:20px}.order-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.order-id{font-weight:900;color:var(--red-accent)}.order-meta{color:var(--text-muted);font-size:13px}.order-customer{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.order-customer div{background:#111114;border-radius:10px;padding:10px}.order-customer small{display:block;color:#777;margin-bottom:4px}.order-items{border-top:1px solid #242428;padding-top:14px}.order-item{display:flex;justify-content:space-between;gap:10px;padding:8px 0;color:#ddd}.order-total{display:flex;justify-content:flex-end;gap:14px;margin-top:15px;font-size:18px}.status-select{background:#111114;color:#fff;border:1px solid #333;border-radius:9px;padding:8px}.empty-admin{text-align:center;color:var(--text-muted);padding:40px}
+    @media(max-width:1050px){.order-customer{grid-template-columns:repeat(2,1fr)}}@media(max-width:700px){.admin-page{padding:100px 12px 30px}.admin-top{align-items:flex-start;flex-direction:column}.order-customer{grid-template-columns:1fr}.order-head{flex-direction:column}.order-total{justify-content:flex-start;flex-wrap:wrap}.order-address{word-break:break-word}}
+  </style>
+</head>
+<body>
+<header class="navbar"><div class="nav-container"><a href="index.html" class="logo">TURBO <span>THREADS</span></a><div class="nav-right"><a class="admin-btn" href="index.html">Store</a></div></div></header>
+<main class="admin-page">
+  <section id="login-card" class="admin-login">
+    <span class="details-badge">PRIVATE CONTROL PANEL</span><h1>Owner Dashboard</h1><p class="admin-sub">Orders are protected behind your private admin password.</p>
+    <form id="login-form" class="admin-form"><input id="admin-password" type="password" required placeholder="Admin password" autocomplete="current-password"><button class="admin-btn primary" type="submit">UNLOCK ORDERS</button><p id="login-error" class="admin-sub"></p></form>
+  </section>
+  <section id="panel" class="admin-panel" hidden>
+    <div class="admin-top"><div><span class="details-badge">PRIVATE ORDERS</span><h1>Turbo Threads Orders</h1><p id="order-count" class="admin-sub">0 orders</p></div><div class="admin-actions"><button id="refresh" class="admin-btn">Refresh</button><button id="logout" class="admin-btn">Logout</button></div></div>
+    <div id="orders" class="orders-grid"></div>
+  </section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+const esc=v=>String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+const money=v=>`${Number(v||0).toLocaleString('en-US')} EGP`;
+const statuses=['new','confirmed','shipped','delivered','cancelled'];
+async function api(url,options={}){try{const r=await fetch(url,{...options,credentials:'same-origin',headers:{'Content-Type':'application/json',...(options.headers||{})}});const text=await r.text();let d={};try{d=text?JSON.parse(text):{}}catch{}if(!r.ok){if(r.status===401)throw new Error('Unauthorized');throw new Error(d.error||`Request failed (${r.status})`)}return d}catch(err){if(err instanceof TypeError)throw new Error('Cannot reach the order server. Start the project with npm start and open http://localhost:3000/admin');throw err}}
+async function loadOrders(){try{const d=await api('/api/admin/orders');render(d.orders||[])}catch(e){if(e.message==='Unauthorized') showLogin(); else alert(e.message)}}
+async function checkServer(){try{await api('/api/health')}catch(e){$('#login-error').textContent=e.message}}
+function render(orders){$('#order-count').textContent=`${orders.length} order${orders.length===1?'':'s'}`;const root=$('#orders');root.innerHTML='';if(!orders.length){root.innerHTML='<div class="empty-admin">No orders yet. New website orders will appear here.</div>';return}orders.forEach(o=>{const card=document.createElement('article');card.className='order-card';const items=(o.items||[]).map(i=>`<div class="order-item"><span>${esc(i.name)} · ${esc(i.size)} × ${i.quantity}</span><strong>${money(i.price*i.quantity)}</strong></div>`).join('');card.innerHTML=`<div class="order-head"><div><div class="order-id">${esc(o.id)}</div><div class="order-meta">${new Date(o.createdAt).toLocaleString()}</div></div><select class="status-select" data-id="${esc(o.id)}">${statuses.map(s=>`<option value="${s}" ${s===o.status?'selected':''}>${s.toUpperCase()}</option>`).join('')}</select></div><div class="order-customer"><div><small>Name</small>${esc(o.customer.name)}</div><div><small>Phone</small>${esc(o.customer.phone)}</div><div><small>Governorate</small>${esc(o.customer.governorate)}</div><div class="order-address"><small>Detailed address</small>${esc(o.customer.address || '—')}</div></div><div class="order-items">${items}</div><div class="order-total"><span>Subtotal ${money(o.subtotal)}</span><span>Shipping ${money(o.shipping)}</span><strong>${money(o.total)}</strong></div>`;root.appendChild(card)});root.querySelectorAll('.status-select').forEach(s=>s.addEventListener('change',async e=>{try{await api('/api/admin/orders/'+encodeURIComponent(e.target.dataset.id),{method:'PATCH',body:JSON.stringify({status:e.target.value})})}catch(err){alert(err.message);loadOrders()}}))}
+function showPanel(){$('#login-card').hidden=true;$('#panel').hidden=false;loadOrders()}
+function showLogin(){$('#login-card').hidden=false;$('#panel').hidden=true}
+$('#login-form').addEventListener('submit',async e=>{e.preventDefault();$('#login-error').textContent='';try{await api('/api/admin/login',{method:'POST',body:JSON.stringify({password:$('#admin-password').value})});$('#admin-password').value='';showPanel()}catch(err){$('#login-error').textContent=err.message}});
+$('#refresh').addEventListener('click',loadOrders);$('#logout').addEventListener('click',async()=>{try{await api('/api/admin/logout',{method:'POST'})}finally{showLogin()}});
+checkServer(); loadOrders().then(()=>{if(!$('#panel').hidden)return;}).catch(()=>{});
+</script>
+</body></html>
