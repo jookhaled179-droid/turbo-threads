@@ -39,7 +39,6 @@ async function loadProducts() {
 
 // إضافة منتج للسلة
 function addToCart(productId) {
-    // منطق إضافة المنتج للسلة
     console.log('Added product:', productId);
 }
 
@@ -53,12 +52,9 @@ function setupCartListeners() {
     }
 }
 
-// ==========================================
-// الدالة المُعدلة بالكامل لإرسال الأوردر بدون أخطاء
-// ==========================================
+// دالة إرسال الأوردر بدون أخطاء
 async function submitOrder() {
     try {
-        // 1. جمع بيانات العميل من الفورم
         const fullNameInput = document.getElementById('fullName') || document.querySelector('input[name="fullName"]');
         const phoneInput = document.getElementById('phone') || document.querySelector('input[name="phone"]');
         const governorateInput = document.getElementById('governorate') || document.querySelector('select[name="governorate"]');
@@ -69,16 +65,13 @@ async function submitOrder() {
         const governorate = governorateInput ? governorateInput.value : '';
         const address = addressInput ? addressInput.value.trim() : '';
 
-        // التحقق من البيانات
         if (!fullName || !phone || !governorate || !address) {
             alert('من فضلك املأ جميع بيانات الشحن المطلوبة!');
             return;
         }
 
-        // حساب السلع أو إجمالي السلة
         const cartItems = JSON.parse(localStorage.getItem('turbo_cart')) || [];
         
-        // تجهيز بيانات الأوردر لترتفع في قاعدة بيانات Supabase
         const orderData = {
             full_name: fullName,
             phone: phone,
@@ -88,7 +81,6 @@ async function submitOrder() {
             created_at: new Date().toISOString()
         };
 
-        // الرفع المباشر لجدول orders في Supabase (حل نهائي لمشكلة خطأ 500)
         const { data, error } = await supabase
             .from('orders')
             .insert([orderData]);
@@ -101,17 +93,14 @@ async function submitOrder() {
 
         alert('تم تسجيل طلبك بنجاح! سيتم تحويلك الآن لتأكيد الطلب عبر الواتساب.');
 
-        // تفريغ السلة بعد الطلب الناجح
         localStorage.removeItem('turbo_cart');
 
-        // 2. تحويل العميل للواتساب برقمك
         const whatsappNumber = "01153156077";
         const message = `مرحباً، أريد تأكيد طلبي الجديد من متجر Turbo Threads:\n\nالاسم: ${fullName}\nالهاتف: ${phone}\nالمحافظة: ${governorate}\nالعنوان: ${address}`;
         const encodedMessage = encodeURIComponent(message);
         
         window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
         
-        // إعادة توجيه للصفحة الرئيسية أو تحديث الصفحة
         window.location.href = 'home.html';
 
     } catch (err) {
