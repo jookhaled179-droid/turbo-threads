@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | Turbo Threads</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">TURBO <span>THREADS</span></a>
+            <div class="nav-right">
+                <nav class="nav-links">
+                    <a href="index.html">HOME</a>
+                </nav>
+                <div class="social-nav">
+                    <a href="https://www.instagram.com/yousifkhaled44/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/201153156077" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                <button id="cart-btn" class="cart-btn">
+                    <i class="fa-solid fa-bag-shopping"></i> <span id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Product Details Section -->
+    <main class="product-details-container">
+        <div id="product-details-content">
+            <p class="loading-text">Loading product details...</p>
+        </div>
+        
+        <!-- Trust Banner -->
+        <div class="trust-banner" style="margin-top: 60px;">
+            <div class="trust-grid">
+                <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Secure WhatsApp Checkout</div>
+                <div class="trust-item"><i class="fa-solid fa-award"></i> 100% Heavy Cotton Guaranteed</div>
+                <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Fast Shipping Across Egypt</div>
+            </div>
+        </div>
+
+        <!-- Footer Socials -->
+        <div class="footer-social">
+            <a href="https://www.instagram.com/yousifkhaled44/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/201153156077" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+    </main>
+
+    <!-- Size Guide Modal -->
+    <div id="size-guide-modal" class="modal-overlay">
+        <div class="modal-box" style="max-width: 500px; text-align: center;">
+            <button class="close-modal" onclick="closeSizeGuide()">&times;</button>
+            <h2 style="color: #fff; margin-bottom: 15px;">SIZE GUIDE (CM)</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Oversized streetwear fit for absolute comfort.</p>
+            <table style="width: 100%; color: #fff; border-collapse: collapse; margin-bottom: 20px;">
+                <tr style="border-bottom: 1px solid var(--border-color);"><th style="padding: 10px;">Size</th><th style="padding: 10px;">Chest</th><th style="padding: 10px;">Length</th></tr>
+                <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; color: var(--red-accent); font-weight: bold;">M</td><td>110 cm</td><td>72 cm</td></tr>
+                <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; color: var(--red-accent); font-weight: bold;">L</td><td>116 cm</td><td>74 cm</td></tr>
+                <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; color: var(--red-accent); font-weight: bold;">XL</td><td>122 cm</td><td>76 cm</td></tr>
+                <tr><td style="padding: 10px; color: var(--red-accent); font-weight: bold;">2XL</td><td>128 cm</td><td>78 cm</td></tr>
+            </table>
+            <button class="add-to-cart" style="width: 100%; padding: 12px; font-size: 14px;" onclick="closeSizeGuide()">Got It</button>
+        </div>
+    </div>
+
+    <!-- Real Order Checkout -->
+    <div id="checkout-modal" class="modal-overlay checkout-overlay">
+        <div class="modal-box checkout-box">
+            <button id="close-checkout" class="close-modal" type="button">&times;</button>
+            <div class="checkout-heading">
+                <span class="details-badge">REAL ORDER CHECKOUT</span>
+                <h2>Complete your order</h2>
+                <p>Enter your details once. You can confirm the order here or save it and continue through WhatsApp.</p>
+            </div>
+            <form id="checkout-form" class="checkout-form" onsubmit="return false">
+                <label>Full name<input id="checkout-name" name="name" required minlength="2" maxlength="100" autocomplete="name" placeholder="Your full name"></label>
+                <label>Phone number<input id="checkout-phone" name="phone" required inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX"></label>
+                <label>Governorate<select id="checkout-governorate" name="governorate" required><option value="">Choose governorate</option></select></label>
+                <label>Detailed address<textarea id="checkout-address" name="address" required minlength="8" maxlength="500" autocomplete="street-address" placeholder="Street, building number, floor, apartment, landmark..." rows="3"></textarea></label>
+                <div class="checkout-summary">
+                    <div class="checkout-summary-head"><strong>Order summary</strong><span>Shipping: 90 EGP</span></div>
+                    <div id="checkout-summary-items"></div>
+                    <div class="checkout-total-line"><span>Subtotal</span><strong id="checkout-subtotal">0 EGP</strong></div>
+                    <div class="checkout-total-line grand"><span>Total with shipping</span><strong id="checkout-grand-total">90 EGP</strong></div>
+                </div>
+                <div class="checkout-actions">
+                    <button id="place-order-btn" class="btn-add-bag" type="button" onclick="submitOrder('website')">CONFIRM ORDER</button>
+                    <button id="whatsapp-order-btn" class="whatsapp-order-btn" type="button" onclick="submitOrder('whatsapp')"><i class="fa-brands fa-whatsapp"></i> SAVE ORDER + CONTINUE TO WHATSAPP</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/201153156077?text=Hello%20TURBO%20THREADS,%20I%20have%20an%20inquiry!" target="_blank" class="floating-whatsapp" title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>YOUR SHOPPING BAG</h3>
+                <button id="close-cart">&times;</button>
+            </div>
+            <div id="cart-items-container" class="cart-items">
+                <p class="empty-cart">Your bag is currently empty.</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total-price">0 EGP</span>
+                </div>
+                <button class="btn-checkout" onclick="checkout()">CHECKOUT & PLACE ORDER</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="store-config.js"></script>
+    <script src="store.js"></script>
+    <script src="product-page.js"></script>
+</body>
+</html>

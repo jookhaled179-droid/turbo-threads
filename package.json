@@ -1,0 +1,14 @@
+{
+  "name": "turbo-threads",
+  "version": "2.0.0",
+  "private": true,
+  "description": "TURBO THREADS storefront with real orders, WhatsApp checkout and private admin dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --check html/store.js && node --check html/home.js && node --check html/product-page.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

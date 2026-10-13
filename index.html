@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turbo Threads | Legendary Street Culture & Car Apparel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">TURBO <span>THREADS</span></a>
+            <div class="nav-right">
+                <nav class="nav-links">
+                    <a href="index.html" class="active">HOME</a>
+                </nav>
+                <div class="social-nav">
+                    <a href="https://www.instagram.com/yousifkhaled44/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://wa.me/201153156077" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+                <button id="cart-btn" class="cart-btn">
+                    <i class="fa-solid fa-bag-shopping"></i> <span id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Marquee Ticker -->
+    <div class="marquee-ticker">
+        <div class="marquee-content">
+            <span>🔥 100% PREMIUM HEAVY COTTON</span> • 
+            <span>🏎️ MIDNIGHT STREET CULTURE</span> • 
+            <span>⚡ EXCLUSIVE CAR DROPS</span> • 
+            <span>🔥 UNSTOPPABLE DURABILITY</span> • 
+            <span>🔥 100% PREMIUM HEAVY COTTON</span> • 
+            <span>🏎️ MIDNIGHT STREET CULTURE</span> • 
+            <span>⚡ EXCLUSIVE CAR DROPS</span> • 
+            <span>🔥 UNSTOPPABLE DURABILITY</span>
+        </div>
+    </div>
+
+    <!-- Hero Section with RPM Gauge -->
+    <section class="hero">
+        <div class="hero-wrapper">
+            <div class="hero-text-content">
+                <h1>UNSTOPPABLE DRIVE, <span>100% LEGENDARY QUALITY</span></h1>
+                <p>Welcome to Turbo Threads — The ultimate elite gear for hardcore car enthusiasts and midnight street legends. 100% premium heavy-weight cotton, insane durability, and unbeatable street style built to perform!</p>
+                <a href="#products" class="add-to-cart" style="display: inline-block; padding: 16px 35px; font-size: 16px; background: var(--red-accent); color: var(--bg-color); text-decoration: none; border-radius: 12px; font-weight: 900; box-shadow: 0 0 25px var(--red-glow);">EXPLORE THE DROP</a>
+            </div>
+            <div class="hero-gauge-container">
+                <div class="cyan-rpm-card">
+                    <span class="gauge-title">ENGINE RPM GAUGE</span>
+                    <div class="cyan-dial">
+                        <div class="cyan-needle" id="cyan-needle"></div>
+                        <div class="cyan-cap"></div>
+                    </div>
+                    <div class="rpm-digital">
+                        <span id="cyan-rpm-val">7200</span> <small>RPM</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Features Bar -->
+    <div class="features-bar">
+        <div class="feature-box">
+            <i class="fa-solid fa-shirt"></i>
+            <div>
+                <h4>100% Premium Cotton</h4>
+                <p>Heavy-weight ultra durable fabric</p>
+            </div>
+        </div>
+        <div class="feature-box">
+            <i class="fa-solid fa-fire"></i>
+            <div>
+                <h4>Exclusive Car Graphics</h4>
+                <p>Designed for true street culture</p>
+            </div>
+        </div>
+        <div class="feature-box">
+            <i class="fa-solid fa-bolt"></i>
+            <div>
+                <h4>Fast WhatsApp Order</h4>
+                <p>Direct checkout with instant support</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Stats Section -->
+    <div class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>HAPPY RACERS</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>HEAVY COTTON</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>WHATSAPP SUPPORT</p>
+            </div>
+            <div class="stat-item">
+                <h3>01</h3>
+                <p>ELITE STREET BRAND</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trust Badges Banner (New) -->
+    <div class="trust-banner">
+        <div class="trust-grid">
+            <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Secure WhatsApp Checkout</div>
+            <div class="trust-item"><i class="fa-solid fa-award"></i> 100% Heavy Cotton Guaranteed</div>
+            <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Fast Shipping Across Egypt</div>
+        </div>
+    </div>
+
+    <!-- Brand Manifesto Section -->
+    <section class="manifesto-section">
+        <div class="manifesto-card">
+            <h2>THE <span>TURBO THREADS</span> MANIFESTO</h2>
+            <p>Your car isn't just a machine; it's a statement, a lifestyle, and an extension of your own soul. When you pour your passion, late nights, and hard work into building the ultimate ride, your gear needs to match that exact high-octane energy.</p>
+            <p>We believe that true car enthusiasts deserve apparel that speaks their language. That's why every single piece we create is a tribute to midnight street culture, roaring engines, and legendary chassis. If your car is built different, your wardrobe should be too. Rock a tee that matches the exact vibe of your machine and wear your horsepower with absolute pride!</p>
+        </div>
+    </section>
+
+    <!-- Products Section (Slider Carousel) -->
+    <main class="products-section" id="products">
+        <div class="section-title">
+            <div>
+                <h2>LATEST HIGH-OCTANE COLLECTION</h2>
+                <p>Explore the drop in a premium performance-style collection built for car culture.</p>
+            </div>
+
+        </div>
+
+        <div id="products-grid" class="products-grid">
+            <p class="loading-text">Fetching latest collection...</p>
+        </div>
+    </main>
+
+    <!-- Community & Reviews Section -->
+    <section class="reviews-section">
+        <div class="section-title" style="margin-bottom: 25px;">
+            <div>
+                <h2>STREET LEGENDS VIBE</h2>
+                <p>What our community of car enthusiasts and racers are saying.</p>
+            </div>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"The weight and cotton quality on these hoodies are insane. Perfect fit while cruising down the highway at midnight. Absolute top-tier quality!"</p>
+                <div class="review-author">
+                    Ahmed M.
+                    <span>Verified Car Enthusiast</span>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"Finally a local brand that understands real car culture and premium fits. The print details and fabric weight are unmatched."</p>
+                <div class="review-author">
+                    Tarek K.
+                    <span>Street Culture Addict</span>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p>"Super fast WhatsApp ordering and the packaging feels extremely professional. Will definitely order the entire drop!"</p>
+                <div class="review-author">
+                    Ziad R.
+                    <span>Motorsport Fan</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Socials -->
+        <div class="footer-social">
+            <a href="https://www.instagram.com/yousifkhaled44/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/201153156077" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+    </section>
+
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="close-modal" onclick="closeQuickView()">&times;</button>
+            <div id="quick-view-body" class="modal-content-grid">
+                <!-- Dynamically loaded -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Size Guide Modal -->
+    <div id="size-guide-modal" class="modal-overlay">
+        <div class="modal-box" style="max-width: 500px; text-align: center;">
+            <button class="close-modal" onclick="closeSizeGuide()">&times;</button>
+            <h2 style="color: #fff; margin-bottom: 15px;">SIZE GUIDE (CM)</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Oversized streetwear fit for absolute comfort.</p>
+            <table style="width: 100%; color: #fff; border-collapse: collapse; margin-bottom: 20px;">
+                <tr style="border-bottom: 1px solid var(--border-color);"><th style="padding: 10px;">Size</th><th style="padding: 10px;">Chest</th><th style="padding: 10px;">Length</th></tr>
+                <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; color: var(--red-accent); font-weight: bold;">M</td><td>110 cm</td><td>72 cm</td></tr>
+                <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; color: var(--red-accent); font-weight: bold;">L</td><td>116 cm</td><td>74 cm</td></tr>
+                <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 10px; color: var(--red-accent); font-weight: bold;">XL</td><td>122 cm</td><td>76 cm</td></tr>
+                <tr><td style="padding: 10px; color: var(--red-accent); font-weight: bold;">2XL</td><td>128 cm</td><td>78 cm</td></tr>
+            </table>
+            <button class="add-to-cart" style="width: 100%; padding: 12px; font-size: 14px;" onclick="closeSizeGuide()">Got It</button>
+        </div>
+    </div>
+
+
+    <!-- Real Order Checkout -->
+    <div id="checkout-modal" class="modal-overlay checkout-overlay">
+        <div class="modal-box checkout-box">
+            <button id="close-checkout" class="close-modal" type="button">&times;</button>
+            <div class="checkout-heading">
+                <span class="details-badge">REAL ORDER CHECKOUT</span>
+                <h2>Complete your order</h2>
+                <p>Enter your details once. You can confirm the order here or save it and continue through WhatsApp.</p>
+            </div>
+            <form id="checkout-form" class="checkout-form" onsubmit="return false">
+                <label>Full name<input id="checkout-name" name="name" required minlength="2" maxlength="100" autocomplete="name" placeholder="Your full name"></label>
+                <label>Phone number<input id="checkout-phone" name="phone" required inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX"></label>
+                <label>Governorate<select id="checkout-governorate" name="governorate" required><option value="">Choose governorate</option></select></label>
+                <label>Detailed address<textarea id="checkout-address" name="address" required minlength="8" maxlength="500" autocomplete="street-address" placeholder="Street, building number, floor, apartment, landmark..." rows="3"></textarea></label>
+                <div class="checkout-summary">
+                    <div class="checkout-summary-head"><strong>Order summary</strong><span>Shipping: 90 EGP</span></div>
+                    <div id="checkout-summary-items"></div>
+                    <div class="checkout-total-line"><span>Subtotal</span><strong id="checkout-subtotal">0 EGP</strong></div>
+                    <div class="checkout-total-line grand"><span>Total with shipping</span><strong id="checkout-grand-total">90 EGP</strong></div>
+                </div>
+                <div class="checkout-actions">
+                    <button id="place-order-btn" class="btn-add-bag" type="button" onclick="submitOrder('website')">CONFIRM ORDER</button>
+                    <button id="whatsapp-order-btn" class="whatsapp-order-btn" type="button" onclick="submitOrder('whatsapp')"><i class="fa-brands fa-whatsapp"></i> SAVE ORDER + CONTINUE TO WHATSAPP</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/201153156077?text=Hello%20TURBO%20THREADS,%20I%20have%20an%20inquiry!" target="_blank" class="floating-whatsapp" title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>YOUR SHOPPING BAG</h3>
+                <button id="close-cart">&times;</button>
+            </div>
+            <div id="cart-items-container" class="cart-items">
+                <p class="empty-cart">Your bag is currently empty.</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total-price">0 EGP</span>
+                </div>
+                <button class="btn-checkout" onclick="checkout()">CHECKOUT & PLACE ORDER</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="store-config.js"></script>
+    <script src="store.js"></script>
+    <script src="home.js"></script>
+</body>
+</html>
